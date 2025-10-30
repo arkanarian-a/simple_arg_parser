@@ -11,7 +11,7 @@ CONFIG += c++20
 
 QMAKE_CXXFLAGS += -std=gnu++20 #-fsanitize=address
 
-VERSION = 5.1.4
+VERSION = 1.0.0
 
 SOURCES += \
     simple_arg_parser.cpp \
@@ -36,4 +36,5 @@ unix {
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
+    LICENSE.txt \
     readme.md

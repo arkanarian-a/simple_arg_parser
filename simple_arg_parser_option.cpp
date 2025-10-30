@@ -1,3 +1,21 @@
+// Copyright 2025 Arkanarian
+
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is furnished
+// to do so, subject to the following conditions:
+
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+// PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+// FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+// ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 #include <utility>
 #include <limits>
 #include "hpp/simple_arg_parser.hpp"
@@ -20,8 +38,8 @@ namespace SimpleArgParser
     constinit std::size_t Option::UNLIMITED_MAX_ITEMS{std::numeric_limits<std::size_t>::max()};
 
     Option::Option(const Option& option)
-    // Because of constructing vector<Option> from std::initializer_list<T> in Parser constructor and perceiving objects
-    // from brace-enclosed initializer list as <const T> by the std::initializer_list<T> this copy constructor is needed.
+    // This copy constructor is needed because of constructing vector<Option> from std::initializer_list<T> in Parser constructor
+    // and taking objects of type Option from brace-enclosed initializer list as <const T> by the std::initializer_list<T>.
     :   attributes_(option.attributes_)
     ,   value_(option.value_)
     ,   arg_parser_(option.arg_parser_)

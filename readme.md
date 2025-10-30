@@ -51,7 +51,8 @@ to avoid extra copying;
 and output logic (***if needed!***).
 
 The easiest way to start is to look through privided samples:
-- *sap_quick_start_sample/main.cpp* -- for using options with POD or simple standard library types;
+- *sap_quick_start_sample/main.cpp* -- for using options with integral, floating point or any simple
+standard library types, including 'vectored' options with items of that types;
 - *sap_user_type_sample/main.cpp* -- for custom code for your own data types and parsing logic.
 These samples are commented thoroughly, so, you can catch the idea quickly.
 
@@ -59,15 +60,24 @@ These samples are commented thoroughly, so, you can catch the idea quickly.
 
 The library requires C++20 or higher standard compiler support.
 
-Actually, it uses even one of C++26's feature: **std::runtime_format()**
-functuion, but it's hided inside library's **SimpleArgParser::runtime_format()** analogue, which one's implementation's substituted
-depending of compiler support. In case of C++26 it calls **std::runtime_format()**, otherwise it's implemented via **std::vformat()**.
-See details in *simple_arg_parser_compiler_fine_tunes.hpp*, if you wondered.
+*Actually, it uses even one of C++26's feature: **std::runtime_format()**
+functuion, but it's hided inside library's **SimpleArgParser::runtime_format()** analogue, which implementation substituted
+depending on compiler support. In case of C++26 it calls **std::runtime_format()**, otherwise implementation via **std::vformat()**
+is used. See details in *simple_arg_parser_compiler_fine_tunes.hpp*, if you wondered.*
 
->  \*\*\*   ***Caution:*** 
->  >  *current library version project and samples of library usage are tested with GCC compiler only, any other compilers may 
->  >  be used to build them but it's not garanteed!*
+>  \*\*\*   **Caution:** 
+>  >  current library version project and samples of library usage have been tested with GCC compiler only, any other compilers may 
+>  >  be used to build them but successful result "out-of-the-box" is not garanteed!
 >  
 >  \*\*\*
 
+## If you'd like to provide feedback to the library author
+
+Although the library author does not have the capacity to support the code on a commercial basis, and therefore the library 
+is provided 'as is', the author is willing to consider any feedback or suggestions for potential development and/or improvement 
+of the library. Above all, the author is particularly interested in receiving information about identified bugs. Additionally, 
+while the author cannot guarantee a mandatory response, he's open to provide some explanations regarding the usage of the library 
+and the design features of its code.
+
+For feedback to the library author and questions regarding its usage, please use the public Telegram channel: ***t.me/arkanarian_support***.
 

@@ -1,3 +1,21 @@
+// Copyright 2025 Arkanarian
+
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is furnished
+// to do so, subject to the following conditions:
+
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+// PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+// FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+// ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 #ifndef SIMPLE_ARG_PARSER_SPEC_VALUE_TRAITS_HPP
 #define SIMPLE_ARG_PARSER_SPEC_VALUE_TRAITS_HPP
 
@@ -8,7 +26,7 @@
 // spetializations for these types. Also, you may redefine some of the default specializations in this file by
 // predefining appropriate macros:
 //
-// SIMPLE_ARG_PARSER_DISABLE_VALUE_TRAITS_SWITCHSTATE_SPEC - to disable default ValueTraits<SwitchState> specialization;
+// SIMPLE_ARG_PARSER_DISABLE_VALUE_TRAITS_SWITCH_STATE_SPEC - to disable default ValueTraits<SwitchState> specialization;
 // SIMPLE_ARG_PARSER_DISABLE_VALUE_TRAITS_BOOL_SPEC - to disable default ValueTraits<bool> specialization;
 // SIMPLE_ARG_PARSER_DISABLE_VALUE_TRAITS_STD_STRING_SPEC - to disable default ValueTraits<std::string> specialization;
 // SIMPLE_ARG_PARSER_DISABLE_VALUE_TRAITS_STD__TIME_POINT_SPEC - to disable default
@@ -29,10 +47,10 @@
 
 namespace SimpleArgParser
 {
-#ifndef SIMPLE_ARG_PARSER_DISABLE_VALUE_TRAITS_SWITCHSTATE_SPEC
+#ifndef SIMPLE_ARG_PARSER_DISABLE_VALUE_TRAITS_SWITCH_STATE_SPEC
     template <>
     struct ValueTraits<SwitchState>
-    // For SwitchState option value specialized output only supported ('cause input has no sense).
+    // Supported only for SwitchState option value specialized output ('cause input has no sense).
     {
         std::optional<std::string> output(std::ostream& os, SwitchState state) const
         {
@@ -46,8 +64,8 @@ namespace SimpleArgParser
 #ifndef SIMPLE_ARG_PARSER_DISABLE_VALUE_TRAITS_BOOL_SPEC
     template <>
     struct ValueTraits<bool>: public TypeIndependentValueTraits
-    // For bool option value traits use std::boolalpha representation for output
-    // and input.
+    // For bool option value traits std::boolalpha representation for output
+    // and input is used.
     {
         std::optional<std::string> output(std::ostream &os, bool value) const {
             os << std::boolalpha << value << std::noboolalpha;

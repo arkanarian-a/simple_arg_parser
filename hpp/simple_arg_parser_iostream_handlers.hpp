@@ -1,3 +1,21 @@
+// Copyright 2025 Arkanarian
+
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is furnished
+// to do so, subject to the following conditions:
+
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+// INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+// PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+// FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+// ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 #ifndef SIMPLE_ARG_PARSER_IOSTREAM_HANDLERS_HPP
 #define SIMPLE_ARG_PARSER_IOSTREAM_HANDLERS_HPP
 
@@ -13,11 +31,10 @@ namespace SimpleArgParser
 // Declarations
 // ------------
     struct TypeIndependentValueTraits
-    // The base for ValueTraits<T>. Contains traits that are independent of T.
-    // (Actually, only the count of tokens representing the value in a stream which dependends on
-    // specific value representaion does the matter, not the value type features. Although them (type features)
-    // may determine the form of the representation. Shortly: the same object (and its type, though) may
-    // be represented in different ways).
+    // Base class for ValueTraits<T>. Contains properties that are independent of T.
+    // (Actually, only the count of tokens representing the value in a stream depends on specific representation,
+    // not the features of the value type (T). Although these features may determine the form of such representation.
+    // Briefly: the same object (and its type) may be represented in different ways.)
     {
         TypeIndependentValueTraits(std::size_t default_representation_token_count = 1)
         :   representation_token_count(default_representation_token_count)
@@ -28,7 +45,7 @@ namespace SimpleArgParser
 
     template <typename T>
     struct ValueTraits: public TypeIndependentValueTraits
-    // Structure to define differente type-specific traits for an option value.
+    // Structure to define different type-specific traits for an option value.
     // It could be specialized for the type if needed.
     {
         ValueTraits(): TypeIndependentValueTraits()
@@ -53,8 +70,8 @@ namespace SimpleArgParser
 
     template <typename T>
     std::optional<std::string> default_value_outputter(std::ostream& os, const T& value, const ValueTraits<T>& value_traits = {})
-    // This function is used by default to output the value of type T to std::ostream, taking into account type's T traits,
-    // if them needed. This (default) implementation relies on the traits supplied method, but it could be possible
+    // This function is used by default to output the value of type T to std::ostream, taking into account value's of type T
+    // traits,if them needed. This (default) implementation relies on the method, supplied by traits, but it's possible
     // to implement the output without the traits completly or with custom traits specilization.
     // Both the outputter (default or custom one) and the object of ValueTraits<T> are saved in the Option object when it's
     // initialized. Then the Option object colls the outputter, passing the object of ValueTraits<T> as its third argument.
@@ -88,12 +105,12 @@ namespace SimpleArgParser
     {
         template <typename T>
         T& get_value(Option*);
-        // Helper function to inderect the access to option's value from IOptionIO implementation
+        // Helper function to inderect the access to option's value from IOptionIO implementation.
 
         struct IOptionIO
         // Interface incapsulating option (and its value) input and output details.
         // It's used by Option class methods to input (or parse) and output Option's object.
-        // CAUTION: constructed object of this type (as part of constructing its derivatives)
+        // CAUTION: constructed object of this type (as part of constructing its descendants)
         //          STAY INCONSISTENT UNTIL EXPLICIT CALL OF link_to method, which links it
         //          to Option object it serves for!
         {
@@ -106,13 +123,13 @@ namespace SimpleArgParser
 
             template <typename T>
             ValueTraits<T> get_value_traits() const;
-            // Get the value traits object
+            // Get the value traits object.
 
             void output_option(std::ostream& os) { return output_option_(os); };
-            // Output option key and value
+            // Output option key and value.
 
             void input_option_value(std::istream& is) { return input_option_value_(is);  };
-            // Input option value (according to its type)
+            // Input option value (according to its type).
 
             void link_to(Option* option_ptr) { option_ptr_ = option_ptr; };
             // Link this input/output option handler to the option specified with a pointer
@@ -281,10 +298,8 @@ namespace SimpleArgParser
                 ;   items_got+=representation_token_count
                 )
                 {
-                    // T item_value;
                     items.resize(items_got / representation_token_count + 1);
-                    input_value_(is, items.at(items_got)/*item_value*/);
-                    // items.emplace_back(item_value);
+                    input_value_(is, items.at(items_got));
                 }
             }
             else
