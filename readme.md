@@ -79,5 +79,5 @@ of the library. Above all, the author is particularly interested in receiving in
 while the author cannot guarantee a mandatory response, he's open to provide some explanations regarding the usage of the library 
 and the design features of its code.
 
-For feedback to the library author and questions regarding its usage, please use the public Telegram channel: ***t.me/arkanarian_support***.
+For feedback to the library author and questions regarding its usage, please use the public Telegram group: ***t.me/simple_arg_parser***.
 

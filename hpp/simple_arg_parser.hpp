@@ -1,4 +1,4 @@
-// Copyright 2025 Arkanarian
+// Copyright 2025 arkanarian-a
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
