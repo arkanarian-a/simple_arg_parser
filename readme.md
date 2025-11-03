@@ -12,7 +12,41 @@ value traits template; see the *sap_user_type_sample/main.cpp* for details);
 - define option as owninig the value or keeping a pointer to it (an address of a variable containing the value)
 to avoid extra copying;
 - customize parsing (inputting) and/or outputting option value to enrich it with user-defined behaviour.
-  
+
+
+## Trivial usage example
+
+The following code example demonstrates the simplest use case of the library. Although it does not cover all its
+features, to familiarize yourself with them, it's easiest to review the files *sap_quick_start_sample/main.cpp* and
+*sap_user_type_sample/main.cpp*. The code in these files is sufficiently well-commented.
+
+
+```
+#include <iostream>
+#include "simple_arg_parser.hpp"
+
+namespace SAP = SimpleArgParser;
+
+int main(int argc, const char* argv[])
+{
+   int i{};
+
+   try
+   {
+      SAP::Parser parser{ { "--key"sv, "-k"sv }, &i };
+      
+      parser.parse(argc, argv);
+   }
+   catch (const SAP::OptionException& oe)
+   {
+      oe.output(std::cout, std::source_location::current());
+   }
+   
+   std::cout << i << std::endl;
+
+   return 0;
+}
+```
   
 ## Usage instructions
 
