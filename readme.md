@@ -52,9 +52,9 @@ int main(int argc, const char* argv[])
 
 1. Add to your project *simple_arg_parser.so* library and path to it's header files (*hpp/*).
 2. Include to your code folowing header files:
-   + *simple_arg_parser.hpp* -- the main header file containing **SimpleArgParser::Parser**
+   + *simple_arg_parser.hpp* -- (mandatory) the main header file containing **SimpleArgParser::Parser**
    class and indirectly including all necessary helper classes and templates;
-   + *simple_arg_parser_spec_value_traits.hpp* -- header file containing library-provided
+   + *simple_arg_parser_spec_value_traits.hpp* -- (optional) header file containing library-provided
    specializations of **SimpleArgParser::ValueTraits\<T\>** template for following T's:
      * **SimpleArgParser::SwitchState** (library-specific type representing "switch option value" 
      that is option behaving like a switch: taking value **SimpleArgParser::SwitchState::Specified**
@@ -77,12 +77,12 @@ int main(int argc, const char* argv[])
 >  
 >  \*\*\*
       
-   + *simple_arg_parser_auxiliaries.hpp* -- header file containing library auxiliaries, which
+   + *simple_arg_parser_auxiliaries.hpp* -- (optional) header file containing library auxiliaries, which
    currently are **lno()** and **qd()** std::ostream manipulataros. The first one outputs
    current source line number, the second outputs a
    value in quotes (see the *sap_quick_start_sample/main.cpp* to understand the usage).
 3. Write customization code for your own data types and/or special option value parsing (input)
-and output logic (***if needed!***).
+and output logic (***if needed only!***).
 
 The easiest way to start is to look through privided samples:
 - *sap_quick_start_sample/main.cpp* -- for using options with integral, floating point or any simple
